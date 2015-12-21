@@ -3,6 +3,8 @@
 
 #include <stdint.h>
 
+extern PI2;
+
 void printing(void);
 
 #endif

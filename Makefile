@@ -1,17 +1,19 @@
 # Variables to use rather than typing the same length 
 pi = -l bcm2835
 
-# Type in commnand make compile default
-all:
-	gcc main.c test.c -o LEDEXE $(pi)
-# Type in command make compile for special reasons....	
-compile:
-	gcc main.c test.c -o LEDEXE $(pi)
+all: LEDEXE
 
-# If you wanted to create specific object files or exe....
-#
-#	
+# Listing All object that LED project needs
+LEDEXE: main.o test.o
+	gcc main.o test.o -o LEDEXE $(pi)
 
+# Listing object dependancies	
+main.o: main.c
+	gcc -c main.c 
+	
+test.o: test.c
+	gcc -c test.c 
+	
 # Clean *o removes object files, and inserting exe name removes executable
 clean:
 	rm rf *o *LEDEXE

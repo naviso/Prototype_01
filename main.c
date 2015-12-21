@@ -21,31 +21,34 @@
  * 
  */
 
-#include <stdio.h>
+#include <stdio.h> 
 #include <bcm2835.h>						// C libraries for Raspberry Pi version 1 & 2
 
 #include "test.h"
 
 #define LED_TEST RPI_V2_GPIO_P1_12		    // Assigning LED output to pin 12?
 
+
+//extern int PI2;
+
 int HardwareInit(void);
 
 int main(int argc, char **argv)
 {
 	
-	const unsigned int delay_time_ms = 1;
+	const unsigned int delay_time_ms = 100;
 	
 	if (!HardwareInit()){}  // Did not fail
 	else 
-		return 1;			// fail
-	
+		return 1;			// fail	
 
 	
 	while (1)
 	{
 		bcm2835_gpio_set(LED_TEST); 						//Sets the specified pin output to HIGH 
 		printing();
-		//printf("Rand Value: %f\r", rand() * 3.14);
+		//printf("Rand Value: %4.2f\r", rand() * PI2);
+		//printf("\nRand Value: %f\r", rand() * 3.14);
 		bcm2835_delay (delay_time_ms);						// Delay function
 		bcm2835_gpio_clr(LED_TEST);					     	//Sets the specified pin output to LOW
 		bcm2835_delay (delay_time_ms);	
